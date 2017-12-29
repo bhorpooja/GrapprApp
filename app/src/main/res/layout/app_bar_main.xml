@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codekul.grapprapp.MainActivity">
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appbar_layout_vertical_margin"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="56dp">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="@dimen/image_width"
+                android:layout_height="@dimen/image_height"
+                android:layout_marginEnd="18dp"
+                android:layout_marginStart="2dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txtRunner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_medal"
+                tools:layout_editor_absoluteX="6dp"
+                tools:layout_editor_absoluteY="15dp" />
+
+            <TextView
+                android:id="@+id/txtRunner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginEnd="145dp"
+                android:text="Runner"
+                android:textColor="@android:color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/txtTask"
+                app:layout_constraintEnd_toStartOf="@+id/btnRefer"
+                app:layout_constraintStart_toEndOf="@+id/imageView"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="22dp" />
+
+            <TextView
+                android:id="@+id/txtTask"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="21dp"
+                android:text="Complete 1 task for next level"
+                app:layout_constraintBottom_toTopOf="@+id/progressBar"
+                app:layout_constraintStart_toStartOf="@+id/txtRunner"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:layout_editor_absoluteX="71dp"
+                tools:layout_editor_absoluteY="38dp" />
+
+            <Button
+                android:id="@+id/btnRefer"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/round_corner"
+                android:text="Refer"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txtRunner"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:layout_editor_absoluteX="271dp"
+                tools:layout_editor_absoluteY="27dp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="@dimen/progressbar_width"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="75dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txtTask" />
+        </android.support.constraint.ConstraintLayout>
+
+    </android.support.design.widget.AppBarLayout>
+
+    <include layout="@layout/content_main" />
+
+</android.support.design.widget.CoordinatorLayout>
