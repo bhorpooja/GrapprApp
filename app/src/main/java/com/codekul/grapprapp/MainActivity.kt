@@ -1,29 +1,39 @@
 package com.codekul.grapprapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.NavigationView
+import android.support.v4.app.Fragment
 import android.support.v4.view.GravityCompat
+import android.support.v4.widget.DrawerLayout
 import android.support.v7.app.ActionBarDrawerToggle
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.LinearLayout
+import android.view.View
+import android.widget.TextView
+import com.codekul.grapprapp.fragment.*
+import com.codekul.grapprapp.sharedprefs.Prefs
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.app_bar_main.*
-import kotlinx.android.synthetic.main.content_main.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+
+    var fragment:Fragment?=null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
+        fragment=HomeFragment()
+        val ft=supportFragmentManager.beginTransaction()
+        ft.replace(R.id.contentFrame,fragment)
+        ft.commit()
 
-        setRecyclerList()
-
+        val txtNumber=findViewById<TextView>(R.id.txtNumber)
         val toggle = ActionBarDrawerToggle(
                 this, drawer_layout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
         drawer_layout.addDrawerListener(toggle)
@@ -31,32 +41,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
         nav_view.setNavigationItemSelectedListener(this)
 
-
-
     }
-
-     fun setRecyclerList() {
-         val _recyclerView: RecyclerView = findViewById(R.id.recyclerView)
-         _recyclerView.layoutManager = LinearLayoutManager(this, LinearLayout.VERTICAL, false)
-
-         val items = ArrayList<MyDataClass>()
-
-         items.add(MyDataClass(R.drawable.ic_alarm_clock,"AlarmClock","wednesday"))
-         items.add(MyDataClass(R.drawable.ic_gmail,"Gmail","bhorpooja22@gmail.com"))
-         items.add(MyDataClass(R.drawable.ic_facebook,"Facebook","bhorpooja895@gmail.com"))
-         items.add(MyDataClass(R.drawable.ic_gallery_,"Gallery","It's My Gallery"))
-         items.add(MyDataClass(R.drawable.ic_music_player,"MusicPlayer","Play Music Here"))
-         items.add(MyDataClass(R.drawable.ic_playstore,"PlayStore","Get App from Here"))
-         items.add(MyDataClass(R.drawable.ic_settings,"Setting","Your Phone Setting"))
-         items.add(MyDataClass(R.drawable.ic_whatsapp,"WhatsApp","Hey WhatsApp"))
-         items.add(MyDataClass(R.drawable.ic_youtube,"YouTube","Me YouTube"))
-
-         val adapter = MyAdapter(items)
-
-         //now adding the adapter to recyclerview
-         _recyclerView.adapter = adapter
-
-     }
 
     override fun onBackPressed() {
         if (drawer_layout.isDrawerOpen(GravityCompat.START)) {
@@ -68,6 +53,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
+        val mobileNumber=Prefs.getMobileNo(this)
+        Log.i("@codekul","mobileNo: "+mobileNumber)
+        txtNumber.text=Prefs.getMobileNo(applicationContext)
         menuInflater.inflate(R.menu.main, menu)
         return true
     }
@@ -76,6 +64,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
+
         when (item.itemId) {
             R.id.action_refresh -> return true
             else -> return super.onOptionsItemSelected(item)
@@ -84,34 +73,34 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         // Handle navigation view item clicks here.
-        when (item.itemId) {
-            R.id.nav_home -> {
-                // Handle the camera action
-            }
-            R.id.nav_referrals -> {
-
-            }
-            R.id.nav_notification -> {
-
-            }
-            R.id.nav_wallet -> {
-
-            }
-            R.id.nav_faqs -> {
-
-            }
-            R.id.nav_aboutUs -> {
-
-            }
-            R.id.nav_emailUs -> {
-
-            }
-            R.id.nav_share -> {
-
-            }
-        }
-
-        drawer_layout.closeDrawer(GravityCompat.START)
+        displaySelectedScreen(item.itemId)
         return true
     }
+        private fun displaySelectedScreen(itemId:Int){
+
+
+
+            when (itemId) {
+                R.id.nav_home->fragment=HomeFragment()
+                R.id.nav_referrals->fragment=ReferalFragment()
+                R.id.nav_notification->fragment=NotificationFragment()
+                R.id.nav_faqs->fragment=FaqsFragment()
+                R.id.nav_aboutUs->fragment=AboutusFragment()
+                R.id.nav_logout->{
+                    Prefs.clearUserData(applicationContext)
+                    startActivity(Intent(applicationContext,LoginActivity::class.java))
+                }
+            }
+
+            if (fragment!=null){
+                val ft=supportFragmentManager.beginTransaction()
+                ft.replace(R.id.contentFrame,fragment)
+                ft.addToBackStack(null)
+                ft.commit()
+            }
+
+            val drawer=findViewById<View>(R.id.drawer_layout) as DrawerLayout
+            drawer.closeDrawer(GravityCompat.START)
+        }
+
 }

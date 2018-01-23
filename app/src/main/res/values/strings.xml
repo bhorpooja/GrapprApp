@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Grappr</string>
+    <string name="app_name">CashBolo</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -8,7 +8,10 @@
     <string name="action_refresh">Refresh</string>
     <string name="action_history">History</string>
     <string name="action_terms"><![CDATA[Terms & Conditions]]></string>
-    <string name="runner">Runner</string>
-    <string name="task">Complete 1 task for next level</string>
     <string name="button">refer</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="signUp"><u>Sign Up for CashBolo</u></string>
+    <string name="pwd"><u>Forget Password</u></string>
+    <string name="earn">Earn 10Rs by redeeming 100 Points</string>
+    <string name="point">Points</string>
 </resources>

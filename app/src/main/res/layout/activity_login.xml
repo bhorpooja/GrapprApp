@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.codekul.grapprapp.LoginActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="81dp"
+    android:layout_margin="5dp">
+
+    <TextView
+        android:id="@+id/txtLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="53dp"
+        android:text="Cashbolo Login"
+        android:textSize="40dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="152dp"
+        tools:layout_editor_absoluteY="53dp" />
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtInputEmail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="134dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="134dp">
+
+        <EditText
+            android:id="@+id/edtEmailId"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:drawableLeft="@drawable/ic_email_black_24dp"
+            android:drawablePadding="10dp"
+            android:hint="email" />
+    </android.support.design.widget.TextInputLayout>
+
+    <android.support.design.widget.TextInputLayout
+        android:id="@+id/txtInputPwd"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtInputEmail"
+        tools:layout_editor_absoluteX="8dp"
+        tools:layout_editor_absoluteY="216dp">
+
+        <EditText
+            android:id="@+id/edtPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableLeft="@drawable/ic_lock_black_24dp"
+            android:drawablePadding="10dp"
+            android:inputType="textPassword"
+            android:hint="password" />
+    </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="19dp"
+        android:layout_marginStart="13dp"
+        android:text="Login"
+        android:background="@color/colorPrimary"
+        app:layout_constraintBottom_toTopOf="@+id/txtSignUp"
+        app:layout_constraintStart_toStartOf="@+id/txtSignUp"
+        tools:layout_editor_absoluteX="148dp"
+        tools:layout_editor_absoluteY="315dp" />
+
+    <TextView
+        android:id="@+id/txtSignUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="@string/signUp"
+        app:layout_constraintBottom_toTopOf="@+id/txtForgetPwd"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteX="135dp"
+        tools:layout_editor_absoluteY="382dp" />
+
+    <TextView
+        android:id="@+id/txtForgetPwd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="75dp"
+        android:layout_marginStart="5dp"
+        android:text="@string/pwd"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/txtSignUp"
+        tools:layout_editor_absoluteX="140dp"
+        tools:layout_editor_absoluteY="417dp" />
+</android.support.constraint.ConstraintLayout>
